@@ -63,7 +63,6 @@ def update_todo(id):
 
 @app.route('/todos/<int:id>', methods=['DELETE'])
 def delete_todo(id):
-    print(id)
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('DELETE FROM todo WHERE id = ?', (id,))
