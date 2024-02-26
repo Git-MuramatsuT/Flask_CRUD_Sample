@@ -11,7 +11,7 @@ def hello():
 
 @app.route('/test', methods=['GET'])
 def test():
-    message = "test"
+    message = "This message is from the '/test' path"
     return message
 
 if __name__ == '__main__':
