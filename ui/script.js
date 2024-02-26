@@ -19,12 +19,14 @@ function renderTodos(todosJson) {
     todoTable.innerHTML = `
     <th>ID</th>
     <th>task</th>
+    <th>deadline</th>
     `
     todosJson.todos.forEach(todo => {
         todoTable.innerHTML += `
         <tr>
             <td>${todo.id}</td>
             <td>${todo.task}</td>
+            <td>${todo.deadline}</td>
         </tr>
         `;
     });
@@ -32,11 +34,11 @@ function renderTodos(todosJson) {
 }
 
 async function handleRegisterTodo(event) {
-    event.preventDefault();
     const form = event.target.form;
     const formData = new FormData(form);
     const todo = {
-        task: formData.get("task")
+        task: formData.get("task"),
+        deadline: formData.get("deadline")
     }
 
     const response = await fetch("http://localhost:5000/todos", {
@@ -51,5 +53,5 @@ async function handleRegisterTodo(event) {
         console.error(error);
         return;
     }
-    fetchTodos();
+    // fetchTodos();
 }

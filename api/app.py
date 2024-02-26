@@ -29,11 +29,13 @@ def get_todo_list():
 def add_todo():
     data = request.get_json()
     task = data.get('task')
+    deadline = data.get('deadline')
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO todo (task) VALUES (?)', (task,))
+    cursor.execute('INSERT INTO todo (task, deadline) VALUES (?, ?)', (task, deadline))
     conn.commit()
     conn.close()
+    return jsonify({'message': 'Todo added successfully'}), 200
 
 
 if __name__ == '__main__':
