@@ -30,6 +30,7 @@ function renderTodos(todosJson) {
             <td>${todo.deadline}</td>
             <td>
                 <button onclick="renderTodo(${todo.id})">Edit</button>
+                <button onclick="handleDeleteTodo(${todo.id})">Delete</button>
             </td>
         </tr>
         `;
@@ -109,4 +110,14 @@ async function handleUpdateTodo(event, id) {
     } else {
         document.getElementById("myModal").style.display = "none";
     }
+}
+
+async function handleDeleteTodo(id) {
+    const response = await fetch(`http://localhost:5000/todos/${id}`, {
+        method: "DELETE"
+    });
+    if (!response.ok) {
+        throw new Error("Could not delete todo");
+    }
+    fetchTodos();
 }

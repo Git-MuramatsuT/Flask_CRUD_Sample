@@ -27,7 +27,6 @@ def get_todo_list():
 # ToDoアイテムの追加
 @app.route('/todos', methods=['POST'])
 def add_todo():
-    print("hello")
     data = request.get_json()
     task = data.get('task')
     deadline = data.get('deadline')
@@ -51,13 +50,23 @@ def get_todo(id):
 
 @app.route('/todos/<int:id>', methods=['PUT'])
 def update_todo(id):
-    print("hello")
     data = request.get_json()
     task = data.get('task')
     deadline = data.get('deadline')
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('UPDATE todo SET task = ?, deadline = ? WHERE id = ?', (task, deadline, id))
+    conn.commit()
+    conn.close()
+    return jsonify({'message': 'Todo updates successfully'}), 200
+
+
+@app.route('/todos/<int:id>', methods=['DELETE'])
+def delete_todo(id):
+    print(id)
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM todo WHERE id = ?', (id,))
     conn.commit()
     conn.close()
     return jsonify({'message': 'Todo updates successfully'}), 200
