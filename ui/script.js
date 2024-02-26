@@ -8,6 +8,7 @@ async function fetchTodos() {
 }
 
 function renderTodos(todosJson) { 
+    console.log(todosJson)
     const todoDiv = document.getElementById("todo-list");
     if (!todoDiv) {
         throw new Error("Could not find todoList element");
@@ -17,12 +18,14 @@ function renderTodos(todosJson) {
     todoTable.innerHTML = `
     <th>ID</th>
     <th>task</th>
+    <th>deadline</th>
     `
     todosJson.todos.forEach(todo => {
         todoTable.innerHTML += `
         <tr>
             <td>${todo.id}</td>
             <td>${todo.task}</td>
+            <td>${todo.deadline}</td>
         </tr>
         `;
     });

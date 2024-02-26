@@ -7,20 +7,21 @@ cursor = conn.cursor()
 cursor.execute('''
         CREATE TABLE IF NOT EXISTS todo (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            task TEXT NOT NULL
+            task TEXT NOT NULL,
+            deadline DATE NOT NULL
         )
     ''')
 
 cursor.execute('''
-    INSERT INTO todo (task) VALUES ('task1')
+    INSERT INTO todo (task, deadline) VALUES ('task1', '2024-01-01')
 ''')
 
 cursor.execute('''
-    INSERT INTO todo (task) VALUES ('task2')
+    INSERT INTO todo (task, deadline) VALUES ('task2', '2024-02-01')
 ''')
 
 cursor.execute('''
-    INSERT INTO todo (task) VALUES ('task3')
+    INSERT INTO todo (task, deadline) VALUES ('task3', '2024-03-01')
 ''')
 
 conn.commit()
