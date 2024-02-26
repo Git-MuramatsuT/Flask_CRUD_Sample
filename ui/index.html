@@ -8,7 +8,12 @@
 <body>
     <h1>ToDo List</h1>
     <div id="todo-list"></div>
-    <button onclick="fetchTodos()"> Send Request </button>
+    <form>
+        <input name="task" type="text"/>
+        <button type="submit" onclick="handleRegisterTodo(event)">
+            Submit
+        </button>
+    </form>
 
 </body>
 <script src="./script.js"></script>

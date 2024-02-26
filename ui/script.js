@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", fetchTodos());
+
 async function fetchTodos() {
     const todos = await fetch("http://localhost:5000/todos");
     if(!todos.ok) {
@@ -27,4 +29,27 @@ function renderTodos(todosJson) {
         `;
     });
     todoDiv.appendChild(todoTable);
+}
+
+async function handleRegisterTodo(event) {
+    event.preventDefault();
+    const form = event.target.form;
+    const formData = new FormData(form);
+    const todo = {
+        task: formData.get("task")
+    }
+
+    const response = await fetch("http://localhost:5000/todos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(todo)
+    });
+    if (!response.ok) {
+        const error = await response.json();
+        console.error(error);
+        return;
+    }
+    fetchTodos();
 }

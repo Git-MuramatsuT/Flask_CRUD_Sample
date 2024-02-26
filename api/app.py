@@ -24,5 +24,17 @@ def get_todo_list():
     return jsonify({'todos': [dict(item) for item in todo_items]})
 
 
+# ToDoアイテムの追加
+@app.route('/todos', methods=['POST'])
+def add_todo():
+    data = request.get_json()
+    task = data.get('task')
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO todo (task) VALUES (?)', (task,))
+    conn.commit()
+    conn.close()
+
+
 if __name__ == '__main__':
     app.run(debug=True)
