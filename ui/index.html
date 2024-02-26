@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo App</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <h1>ToDo List</h1>
@@ -15,6 +16,17 @@
             Submit
         </button>
     </form>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span
+                class="close"
+                onclick="document.getElementById('myModal').style.display='none'"
+                >&times;</span
+            >
+            <div id="order-modal-component"></div>
+        </div>
+    </div>
 
 </body>
 <script src="./script.js"></script>
