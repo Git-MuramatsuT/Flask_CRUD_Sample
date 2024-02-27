@@ -47,7 +47,7 @@ async function handleRegisterTodo(event) {
         deadline: formData.get("deadline")
     }
 
-    const response = await fetch("http://localhost:5000/todos", {
+    const response = await fetch("http://localhost:5000/todos/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -71,7 +71,8 @@ async function fetchTodo(id) {
 }
 
 async function renderTodo(id) {
-    const todo = await fetchTodo(id);
+    const response = await fetchTodo(id);
+    const todo = response.todo
     const todoDiv = document.getElementById("order-modal-component");
     todoDiv.innerHTML = `
     <form>
