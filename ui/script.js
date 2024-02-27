@@ -34,6 +34,7 @@ function renderTodos(todosJson) {
 }
 
 async function handleRegisterTodo(event) {
+    event.preventDefault()
     const form = event.target.form;
     const formData = new FormData(form);
     const todo = {
